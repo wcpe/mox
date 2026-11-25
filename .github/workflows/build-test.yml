@@ -27,12 +27,6 @@ jobs:
       # Need to run tests with a temp dir on same file system for os.Rename to succeed.
       - run: 'mkdir -p tmp && TMPDIR=$PWD/tmp make test'
 
-      - uses: actions/upload-artifact@v7
-        with:
-          name: coverage-${{ matrix.go-version }}
-          path: cover.html
-
-      # Format code, we check below if nothing changed.
       - run: 'make fmt'
 
       # Enforce the steps above didn't make any changes.
